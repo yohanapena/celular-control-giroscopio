@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phyphox xmlns="https://phyphox.org/xml" version="1.20" locale="en">
+  <title>Giroscopio FastAPI</title>
+  <category>Raw Sensors</category>
+  <color>blue</color>
+  <description>Velocidad angular (rad/s) enviada por HTTP POST a la API de FastAPI cada 0.25 s.</description>
+  <data-containers>
+    <container size="0">gyr_time</container>
+    <container size="0">gyrX</container>
+    <container size="0">gyrY</container>
+    <container size="0">gyrZ</container>
+  </data-containers>
+  <input>
+    <sensor type="gyroscope">
+      <output component="x">gyrX</output>
+      <output component="y">gyrY</output>
+      <output component="z">gyrZ</output>
+      <output component="t">gyr_time</output>
+    </sensor>
+  </input>
+  <views>
+    <view label="Giroscopio">
+      <graph label="Giro X (rad/s)" labelX="t (s)" labelY="rad/s" timeOnX="true" partialUpdate="true">
+        <input axis="x">gyr_time</input>
+        <input axis="y">gyrX</input>
+      </graph>
+      <graph label="Giro Y (rad/s)" labelX="t (s)" labelY="rad/s" timeOnX="true" partialUpdate="true">
+        <input axis="x">gyr_time</input>
+        <input axis="y">gyrY</input>
+      </graph>
+    </view>
+  </views>
+  <export>
+    <set name="Raw Data">
+      <data name="Time (s)">gyr_time</data>
+      <data name="Gyroscope x (rad/s)">gyrX</data>
+      <data name="Gyroscope y (rad/s)">gyrY</data>
+      <data name="Gyroscope z (rad/s)">gyrZ</data>
+    </set>
+  </export>
+  <network>
+    <connection address="http://192.168.1.100:8000/giroscopio" service="http/post" interval="0.25">
+      <send id="timestamp" type="buffer" keep="false">gyr_time</send>
+      <send id="gx" type="buffer" keep="false">gyrX</send>
+      <send id="gy" type="buffer" keep="false">gyrY</send>
+      <send id="gz" type="buffer" keep="false">gyrZ</send>
+    </connection>
+  </network>
+</phyphox>

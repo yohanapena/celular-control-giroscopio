@@ -83,6 +83,11 @@ Para el giroscopio, envía `gx`, `gy` y `gz` en lugar de `ax`, `ay` y `az`. Las 
 
 Configura Phyphox para enviar sus mediciones mediante solicitudes HTTP `POST` a la ruta correspondiente del servidor. El celular y el equipo que ejecuta la API deben poder comunicarse por la red; para acceder desde otro dispositivo, usa la dirección IP local del equipo en lugar de `localhost`.
 
+## Ejemplos de Phyphox y Colab
+
+- [`ejemplos/phyphox/Giroscopio_FastAPI-1.phyphox`](ejemplos/phyphox/Giroscopio_FastAPI-1.phyphox): experimento de Phyphox que envía las muestras del giroscopio a `/giroscopio` cada 0.25 segundos. Importa el archivo en Phyphox y cambia `192.168.1.100` en la URL de conexión por la dirección IP local del equipo donde corre la API. El celular debe estar en una red que pueda alcanzar ese equipo.
+- [`ejemplos/colab/Mando_Giroscopio_EDO_prueba.ipynb`](ejemplos/colab/Mando_Giroscopio_EDO_prueba.ipynb): cuaderno de Colab para mostrar el modelo, probar datos simulados y visualizar las mediciones y comandos detectados. Sirve como demostración visual: no pulsa teclas. Para la conexión en vivo a MongoDB, configura `MONGODB_URI` en los secretos de Colab.
+
 ## Probar la conexión con MongoDB
 
 Con `.env` configurado, ejecuta:
